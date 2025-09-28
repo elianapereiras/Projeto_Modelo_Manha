@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<main>
+    <div class="form-control">
+        <form method="post">
+            <h2 class="form-text text-primary">Controle de Acesso</h2>
+            <div class="form-control">
+                <label for="Email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" placeholder="Digite aqui seu email" class="form-text" />
+            </div>
+
+            <div class="form-control">
+                <label for="Senha" class="form-label">Email</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" class="form-text" />
+            </div>
+            <div>
+                <input type="submit" id="btnEnviar" name="btnenviar" class="btn-success" />
+                <input type="Button" id="Cad" name="Cad" value="Cadastrar" class="btn-primary" />
+            </div>
+            <div>
+                <h5>Novo por aqui? <a href="@Url.ActionLink("Cadlogin", "Home")">Cadastre-se</a></h5>
+            </div>
+            @Html.Raw(ViewBag.Mesage)
+        </form>
+    </div>
+
+</main>

@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container mt-4">
+    <h2 class="mb-4">Nova Solicitação de Manutenção</h2>
+
+    <form method="post">
+
+        <div class="mb-3">
+            <label for="solicitante" class="form-label">Solicitante</label>
+            <input type="text" class="form-control" id="solicitante" name="solicitante" placeholder="Nome do solicitante">
+        </div>
+
+        <div class="mb-3">
+            <label for="local" class="form-label">Local</label>
+            <input type="text" class="form-control" id="local" name="local" placeholder="Ex: Sala 102, Auditório...">
+        </div>
+
+        <div class="mb-3">
+            <label for="data" class="form-label">Data da Solicitação</label>
+            <input type="date" class="form-control" id="data" name="data">
+        </div>
+
+        <div class="mb-3">
+            <label for="tipo" class="form-label">Tipo de Manutenção</label>
+            <select class="form-select" id="tipo" name="tipo">
+                <option selected disabled>Selecione o tipo de manutenção</option>
+                <option value="Elétrica">Elétrica</option>
+                <option value="Hidráulica">Hidráulica (encanamento)</option>
+                <option value="Pintura">Pintura</option>
+                <option value="Limpeza">Limpeza</option>
+                <option value="Ar Condicionado">Ar Condicionado</option>
+                <option value="Mobiliário">Mobiliário (cadeiras, mesas, armários)</option>
+                <option value="Outro">Outro</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição da Solicitação</label>
+            <textarea class="form-control" id="descricao" name="descricao" rows="3" placeholder="Descreva a manutenção necessária"></textarea>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Salvar Solicitação</button>
+        <button type="reset" class="btn btn-secondary">Limpar</button>
+        @Html.Raw(ViewBag.msg)
+    </form>
+</div>
