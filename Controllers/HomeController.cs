@@ -7,10 +7,12 @@ namespace Projeto_Modelo_Manha.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly Dados_DbContext  _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, Dados_DbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -22,6 +24,7 @@ namespace Projeto_Modelo_Manha.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Solicitar()
         {
             var usuarioLogado = HttpContext.Session.GetString("UserEmail");
@@ -32,36 +35,40 @@ namespace Projeto_Modelo_Manha.Controllers
             }
             return View();
         }
-        [HttpPost]
-        public IActionResult Solicitar(string solicitante, string local)
-        {
-            //quando o banco existir tratar os dados
-            ViewBag.Msg = "Solicitação registrada com sucesso";
-            return View();
-        }
+        
+        
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [HttpPost] //salvar
-        public IActionResult Login(string email, string senha)
+        
+        [HttpPost] //efetuar o processo de login, se os dados digitados no form existirem na tabela login
+        public IActionResult Login(Login login)
         {
-            if (email == "eu@gmail.com" && senha == "123")
-            {
-                HttpContext.Session.SetString("UserEmail", email);
-                return RedirectToAction("Solicitar", "Home");
-            }
-
-            ViewBag.Mesage = "Login inválido!";
-            return View();
+           
+            return View();// volta para a View do login
 
         }
-        [HttpGet]
+
+        [HttpGet]//carregar(abrir) a view Cadlogin
         public ActionResult CadLogin()
         {
             return View();
+        }
+
+        [HttpPost]//Fazer o cadastro dos dados referente ao login
+        public ActionResult CadLogin(Login login)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.login.Add(login);
+                _context.SaveChanges();
+                ViewBag.msg = "Dados Cadastrados com sucesso!";
+                return RedirectToAction("Index", "home");
+            }
+            return View();// se não foi digitado nada no form login retorna para a view login
         }
     }
 }
