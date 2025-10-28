@@ -10,6 +10,7 @@ namespace Projeto_Modelo_Manha.Models
         }
 
         public DbSet<Login> login {get; set; }
-       }
+        public DbSet<Solicitar> solicitar { get; set; }
+    }
     
 }
